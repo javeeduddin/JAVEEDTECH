@@ -1,0 +1,4 @@
+Data collection stopped due to Azure subscription is in a suspended state. Ingestion status = SubscriptionSuspended
+_LogOperation
+| where TimeGenerated >= ago(1d)
+| where Category == "Ingestion"
