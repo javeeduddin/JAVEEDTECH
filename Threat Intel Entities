@@ -1,0 +1,10 @@
+//let NetworkIOC = 
+ThreatIntelEntities
+| where Created > ago(1d)
+| where IsActive == "1"
+| where ObservableKey == "network-traffic:src_ref.value"
+| where Confidence > 80
+| project ObservableValue, Tags,Type, ValidUntil;
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| where RemoteIP has_any ("NetworkIOC")
